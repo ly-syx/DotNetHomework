@@ -19,15 +19,22 @@ namespace programe02
 
         private void button1_Click(object sender, EventArgs e)
         {
-            double num1 = double.Parse(textBox1.Text);
-            double num2 = double.Parse(textBox2.Text);
-            string oper = comboBox1.Text;
-            textBox3.Text = (calculate(num1, num2, oper)).ToString();
+            try
+            {
+                double num1 = double.Parse(textBox1.Text);
+                double num2 = double.Parse(textBox2.Text);
+                string oper = comboBox1.Text;
+                textBox3.Text = (calculate(num1, num2, oper)).ToString();
+            }
+            catch (Exception ex)
+            {
+                textBox3.Text = ex.Message;
+            }
         }
 
         private double calculate(double num1, double num2, string oper)
         {
-            double result = 0;
+            double result;
             switch (oper)
             {
                 case "+":
@@ -42,8 +49,16 @@ namespace programe02
                 case "/":
                     result = num1 / num2;
                     break;
+                default:
+                    throw new InvalidOperationException("operator can't identify." +
+                        "\nPlease, choose operator in ['+','-','*','/']");
             }
             return result;
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }
