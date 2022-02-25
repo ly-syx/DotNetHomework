@@ -19,24 +19,31 @@ namespace programe02
 
         private void button1_Click(object sender, EventArgs e)
         {
-            float num1 = Convert.ToSingle(textBox1.Text);
-            float num2 = Convert.ToSingle(textBox2.Text);
+            double num1 = double.Parse(textBox1.Text);
+            double num2 = double.Parse(textBox2.Text);
             string oper = comboBox1.Text;
+            textBox3.Text = (calculate(num1, num2, oper)).ToString();
+        }
+
+        private double calculate(double num1, double num2, string oper)
+        {
+            double result = 0;
             switch (oper)
             {
                 case "+":
-                    textBox3.Text = (num1 + num2).ToString();
+                    result = num1 + num2;
                     break;
                 case "-":
-                    textBox3.Text = (num1 - num2).ToString();
+                    result = num1 - num2;
                     break;
                 case "*":
-                    textBox3.Text = (num1 * num2).ToString();
+                    result = num1 * num2;
                     break;
                 case "/":
-                    textBox3.Text = (num1 / num2).ToString();
+                    result = num1 / num2;
                     break;
             }
+            return result;
         }
     }
 }
